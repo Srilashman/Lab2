@@ -8,27 +8,36 @@ def get_user_input():
     return nums
 
 def calc_average_temperature(nums):
-    avg = 0
+    avg_temp = 0
     for i in nums:
-        avg += i/len(nums)
-    return avg
+        avg_temp += i/len(nums)
+    return avg_temp
 
 def calc_min_max_temperature(nums):
     min_temp = nums[0]
-    max_temp = nums[0]
-    for i in range(1,len(nums)):
-        if nums[i] < min_temp:
-            min_temp = nums[i]
-        if nums[i] > max_temp:
-            max_temp = nums[i]
+    max_temp = nums[len(nums) - 1]
     return [min_temp, max_temp]
 
+def sort_temperature(nums):
+    nums.sort()
+    return nums
+
+def calc_median_temperature(nums):
+    n = len(nums)
+    if n % 2 == 1:
+        return nums[n//2]
+    return (nums[n//2] + nums[n//2 - 1])/2
+     
 def main():
     display_main_menu()
     nums = get_user_input()
     print("Average is " + str(calc_average_temperature(nums)))
-    print("Minimum is " + str(calc_min_max_temperature(nums)[0]))
-    print("Maximum is " + str(calc_min_max_temperature(nums)[1]))
+    sorted_nums = sort_temperature(nums)
+    print("Sorted list is " + str(sorted_nums))
+    min_max = calc_min_max_temperature(sorted_nums)
+    print("Minimum is " + str(min_max[0]))
+    print("Maximum is " + str(min_max[1]))
+    print("Median is " + str(calc_median_temperature(sorted_nums)))
 
 if __name__ == "__main__":
     main()
