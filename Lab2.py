@@ -15,7 +15,13 @@ def calc_average_temperature(nums):
 
 def calc_min_max_temperature(nums):
     min_temp = nums[0]
-    max_temp = nums[len(nums) - 1]
+    max_temp = nums[0]
+    for i in nums:
+        if i < min_temp:
+            min_temp = i
+        if i > max_temp:
+            max_temp = i
+
     return [min_temp, max_temp]
 
 def sort_temperature(nums):
